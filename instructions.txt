@@ -1,0 +1,27 @@
+1. Compile the files:
+
+gcc load_balancer.c -o lb -pthread
+gcc primary_server.c -o ps -pthread
+gcc secondary_server.c -o ss -pthread
+gcc client.c -o cl
+gcc cleanup.c -o cup
+
+2. Execute the binaries, each one in a separate terminal window:
+
+./lb 201 202 203
+./cl
+./ps 201
+./ss 202
+./ss 203
+
+3. Enter input in the client terminal window. 
+- A graph must be added to the database via type 1 operation before performing 
+any other operation on it. This is required for creation of semaphore for that 
+graph (which will be deleted later).
+- Output for bfs/dfs might take some seconds because of synchronization overheads.
+
+4. Execute cleanup process in a new terminal window to terminate the running processes:
+
+./cup 
+
+5. Client process has to be terminated separately with Ctrl+C.
